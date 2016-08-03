@@ -22,11 +22,25 @@ public class Odometer {
     }
 
     static int getNextReading (int reading) {
-        return 0;
+        int length=findLength(reading);
+        if(reading==getLargestReading(length)){
+            return getSmallestReading(length);
+        }
+        do{
+            reading++;
+        }while(!chkFormat(reading));
+        return reading;
     }
 
     static int getPreviousReading (int reading) {
-        return 0;
+        int length=findLength(reading);
+        if(reading==getSmallestReading(length)){
+            return getLargestReading(length);
+        }
+        do{
+            reading--;
+        }while(!chkFormat(reading));
+        return reading;
     }
 
     static int getDistance (int firstReading, int secondReading) {
@@ -40,4 +54,10 @@ public class Odometer {
     static int getNReadingsBefore (int reading, int n) {
         return 0;
     }
+    static int findLength(int reading){
+        String s="";
+        s+=reading;
+        return s.length();
+    }
+
 }
