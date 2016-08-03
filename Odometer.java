@@ -2,11 +2,23 @@ public class Odometer {
     int currentReading;
 
     static int getSmallestReading (int numberOfDigits) {
-        return 0;
+        int reading = 0;
+        double multiplier = Math.pow(10, numberOfDigits - 1);
+        for (int i = 1 ; i <= numberOfDigits ; i ++) {
+            reading += i * multiplier;
+            multiplier /= 10;
+        }
+        return reading;
     }
 
     static int getLargestReading (int numberOfDigits) {
-        return 0;
+        int reading = 0;
+        double multiplier = Math.pow(10, numberOfDigits - 1);
+        for (int i = numberOfDigits ; i >= 1 ; i --) {
+            reading += i * multiplier;
+            multiplier /= 10;
+        }
+        return reading;
     }
 
     static int getNextReading (int reading) {
