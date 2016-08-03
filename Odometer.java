@@ -11,7 +11,6 @@ public class Odometer {
 					return false;
 				prevDigit = reading%tenVal;
 				reading /= 10;
-				tenVal *= 10;
 				lengthCount++;
 		}
 		return true;
@@ -69,21 +68,22 @@ public class Odometer {
     }
 
     static int getNReadingsAfter (int reading, int n) {
-        while(n--) {
+        while(n != 0) {
 			reading = getNextReading(reading);
+            n--;
 		}
         return reading;
     }
 
     static int getNReadingsBefore (int reading, int n) {
-        while(n--) {
+        while(n != 0) {
 			reading = getPreviousReading(reading);
+            n--;
 		}
         return reading;
     }
     static int findLength(int reading){
-        String s="";
-        s+=reading;
+        String s=Integer.toString(reading);
         return s.length();
     }
 
