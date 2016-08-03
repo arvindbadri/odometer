@@ -7,7 +7,7 @@ public class Odometer {
 		int lengthCount = 1;
 		int tenVal = 10;
 		while(lengthCount <= length) {
-				if(prevDigit < reading%tenVal)
+				if(prevDigit <= reading%tenVal)
 					return false;
 				prevDigit = reading%tenVal;
 				reading /= 10;
@@ -28,10 +28,10 @@ public class Odometer {
 
     static int getLargestReading (int numberOfDigits) {
         int reading = 0;
-        double multiplier = Math.pow(10, numberOfDigits - 1);
-        for (int i = numberOfDigits ; i >= 1 ; i --) {
+        double multiplier = 1;
+        for (int i = 9 ; i >= 10 - numberOfDigits ; i --) {
             reading += i * multiplier;
-            multiplier /= 10;
+            multiplier *= 10;
         }
         return reading;
     }
