@@ -1,6 +1,22 @@
 public class Odometer {
     int currentReading;
 
+	static Boolean chkFormat(int reading) {
+		int prevDigit=10;
+		int length = findLength(reading);
+		int lengthCount = 1;
+		int tenVal = 10;
+		while(lengthCount <= length) {
+				if(prevDigit < reading%tenVal)
+					return false;
+				prevDigit = reading%tenVal;
+				reading /= 10;
+				tenVal *= 10;
+				lengthCount++;
+		}
+		return true;
+	}
+	
     static int getSmallestReading (int numberOfDigits) {
         int reading = 0;
         double multiplier = Math.pow(10, numberOfDigits - 1);
@@ -44,15 +60,26 @@ public class Odometer {
     }
 
     static int getDistance (int firstReading, int secondReading) {
-        return 0;
+        int distance = 0;
+		while(firstReading != secondReading) {
+			firstReading = getNextReading(firstReading);
+			distance++;
+		}
+        return distance;
     }
 
     static int getNReadingsAfter (int reading, int n) {
-        return 0;
+        while(n--) {
+			reading = getNextReading(reading);
+		}
+        return reading;
     }
 
     static int getNReadingsBefore (int reading, int n) {
-        return 0;
+        while(n--) {
+			reading = getPreviousReading(reading);
+		}
+        return reading;
     }
     static int findLength(int reading){
         String s="";
